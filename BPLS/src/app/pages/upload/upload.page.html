@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content" color="custom"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="custom">Upload</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="save-outline" color="custom"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline" color="custom"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="close-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content">
+  <ion-avatar class="avatar">
+    <img src="{{image}}" >
+  </ion-avatar>
+  <ion-button expand="block" color="success" class="btncustom" (click)="selectImage()">PASSPORT SIZE LATEST PICTURE</ion-button>
+  <form [formGroup]="uform">
+    <ion-list lines="full">
+      <ion-text>Previous Year's Permit</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input1 type="text" placeholder="SELECT FILE" readonly="true" formControlName="prevypermit"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end" (click)="select('prevypermit',input1)"></ion-icon>     
+      </ion-item>
+      
+      <ion-text>Previous Clearance- Fire</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input2 type="text" placeholder="SELECT FILE" readonly="true" formControlName="prevclearance"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end" (click)="select('prevclearance',input2)"></ion-icon>     
+      </ion-item>
+      <ion-text>Previous Clearance- Health/Sanitary</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input22 type="text" placeholder="SELECT FILE" readonly="true" formControlName="prevclearanceh"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end"(click)="select('prevclearanceh',input22)"></ion-icon>     
+      </ion-item>
+      <ion-text>Community Tax - Current year</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input3 type="text" placeholder="SELECT FILE" readonly="true" formControlName="comtax"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end" (click)="select('comtax',input3)"></ion-icon>     
+      </ion-item>
+      <ion-text>Gross Sales Receipts of Preceding Year</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input4 type="text" placeholder="SELECT FILE" readonly="true" formControlName="grossSales"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end" (click)="select('grossSales',input4)"></ion-icon>     
+      </ion-item>
+      <ion-text>Official Receipts Showing All Regulatory Fees</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input5 type="text" placeholder="SELECT FILE" readonly="true" formControlName="offreceipt"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end" (click)="select('offreceipt',input5)"></ion-icon>     
+      </ion-item>
+      <ion-text>Certificate Attesting Tax Exemptions</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input6 type="text" placeholder="SELECT FILE" readonly="true" formControlName="certificate_tax"></ion-input>
+        <ion-icon name="cloud-upload-outline" slot="end" (click)="select('certificate_tax',input6)"></ion-icon>     
+      </ion-item>
+      <!-- <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.businessname">
+          <div class="error-message" *ngIf="sform.get('businessname').hasError(validation.type) && (sform.get('businessname').dirty || sform.get('businessname').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div> -->
+    </ion-list>
+    <ion-button expand="block" color="success" class="btncustom" (click)="save(uform.value)" [disabled]="!uform.valid">SAVE</ion-button>
+    <!-- <ion-button expand="block" color="warning" class="btncustom">SAVE AS DRAFT</ion-button> -->
+    <ion-button expand="block" color="danger" class="btncustom">CANCEL</ion-button>
+  </form>
+</ion-content>

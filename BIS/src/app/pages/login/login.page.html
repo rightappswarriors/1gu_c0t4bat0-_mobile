@@ -1,0 +1,58 @@
+<!---
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="backtotabs()">
+      <ion-back-button color="custom">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title color="custom">Log in</ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+<ion-content class="ion-padding ion-text-center content">
+  
+ 
+  <img src="assets/cotabato.png" class="logo">
+    
+  <form [formGroup]="lform">
+    <ion-list lines="full"> 
+      <ion-item class="bgitem">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input type="text" placeholder="USERNAME" formControlName="username"></ion-input>     
+      </ion-item>
+      <ion-item class="bgitem">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input #input type="password" placeholder="PASSWORD" formControlName="password"></ion-input>
+        <ion-icon #icon name="eye-outline" slot="end" (click)="showPassword(input,icon)"></ion-icon>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" color="primary"  (click)="login(lform.value)" class="btncustom" [disabled]="!lform.valid">SIGN IN</ion-button>
+  </form>
+  <!-- <ion-text>
+    <h6>Forgot Password?</h6>
+  </ion-text> -->
+  <ion-text>
+    <h6>Don't have an account?</h6>
+  </ion-text>
+  <ion-button expand="block" color="danger"  (click)="signup()" class="btncustom">REGISTER</ion-button>
+  <!---
+  <ion-text>
+    <h6>Or</h6>
+  </ion-text>
+  <ion-button expand="block" color="custom"  (click)="fbLogin()" class="btnpadding">
+    <ion-icon name="logo-facebook" slot="start"></ion-icon>FACEBOOK
+  </ion-button>
+  <ion-button expand="block" color="custom"  (click)="gpLogin()" class="btnpadding">
+    <ion-icon name="logo-google" slot="start"></ion-icon>GOOGLE
+  </ion-button>
+  -->
+  
+  <!-- <ion-text>
+    <h6>Don't have an account? <a color="primary" (click)="signup()" style="text-decoration: none;">Sign Up</a></h6>
+  </ion-text>   -->
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title slot="end" style="font-size: 15px;">{{VersionNumber}}</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content" color="custom"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="custom">Apply</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content">
+  <form [formGroup]="aform">
+    <ion-text >Business Type</ion-text>
+    <ion-item class="bgitem">
+      <ion-label>Business Type</ion-label>
+      <ion-select placeholder="SELECT" class="select-full-width" formControlName="btype">
+        <ion-select-option *ngFor="let b of btype" [value]="b">{{b}}</ion-select-option>
+      </ion-select>     
+    </ion-item>
+    <ion-text>Business Name</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER BUSINESS NAME" formControlName="bname"></ion-input>  
+    </ion-item>
+    <ion-item lines="full" style="margin-bottom: 8px;">
+      <ion-text>BUSINESS ADDRESS</ion-text>
+    </ion-item>
+    <ion-text>Street Name</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER STREET NAME" formControlName="streetname"></ion-input>  
+    </ion-item>
+    <ion-text>Barangay</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER BARANGAY" formControlName="barangay"></ion-input>  
+    </ion-item>
+    <ion-text>City / Municipality</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER CITY/MUNICIPALITY" formControlName="citymun"></ion-input>  
+    </ion-item>
+    <ion-text>Province</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER PROVINCE" formControlName="province"></ion-input>  
+    </ion-item>
+    <ion-text>ZIP CODE</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER ZIP CODE" formControlName="zcode"></ion-input>  
+    </ion-item>
+    <ion-item lines="full">
+    </ion-item>
+    <ion-text>Landline Number</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER LANDLINE NUMBER" formControlName="lnumber"></ion-input>  
+    </ion-item>
+    <ion-text>Cellphone Number</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER CELLPHONE NUMBER" formControlName="cnumber"></ion-input>  
+    </ion-item>
+    <ion-text>Email</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER EMAIL" formControlName="email"></ion-input>  
+    </ion-item>
+    <ion-item lines="full" style="margin-bottom: 8px;">
+      <ion-text>OWNER</ion-text>
+    </ion-item>
+    <ion-text>Last Name</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER LAST NAME" formControlName="olname"></ion-input>  
+    </ion-item>
+    <ion-text>First Name</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER FIRST NAME" formControlName="ofname"></ion-input>  
+    </ion-item>
+    <ion-text>Middle Name</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER MIDDLE NAME" formControlName="omname"></ion-input>  
+    </ion-item>
+    <ion-text>POSITION</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER POSITION" formControlName="oposition"></ion-input>  
+    </ion-item>
+    <ion-item lines="full">
+    </ion-item>
+    <ion-text>Last Year Incom</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="number" placeholder="ENTER LAST YEAR INCOME" formControlName="lyincome"></ion-input>  
+    </ion-item>
+    <ion-button expand="block" color="success" class="btncustom" (click)="save(aform.value)" [disabled]="!aform.valid">SAVE</ion-button>
+  </form>
+</ion-content>

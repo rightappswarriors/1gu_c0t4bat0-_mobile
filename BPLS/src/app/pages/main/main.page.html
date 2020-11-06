@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content" color="custom"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="custom">Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content">
+  <!-- <ion-text>Welcome!</ion-text> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let m of menus">
+        <div>
+            <ion-card class="ion-text-center" (click)="gotoPage(m.url)">
+              <ion-icon [name]="m.icon" color="custom" style=" height:5rem;
+              width:100%;"></ion-icon>
+            <ion-card-content>
+              <ion-label class="ion-text-wrap" color="custom">
+              <p>{{m.name}}</p>
+              </ion-label>
+            </ion-card-content>
+            </ion-card>
+        </div>
+      </ion-col>  
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,57 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-item lines="none">
+        <ion-avatar slot="start" style="
+        height:4rem;
+        width:4rem;">
+          <!--  -->
+          <img src="assets/cotabato.png">
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          <ion-text>
+            <h6>{{users.opr_name}}</h6>
+          </ion-text>
+          <ion-text>
+            <p>{{users.email}}</p>
+          </ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list lines="full">
+        <ion-item (click)="gotopage('/tabs/tabs/tab1')">
+          <ion-label class="ion-text-wrap">Dashboard</ion-label>
+        </ion-item>
+        <ion-item (click)="showitem(bicon,1)">
+          <ion-icon #bicon slot="end" name="chevron-forward-outline"></ion-icon>
+          <ion-label class="ion-text-wrap">Barangay Clearance</ion-label>
+        </ion-item>
+        <div *ngIf="item.item1 == true">
+          <ion-item (click)="gotopage('/appnew')">
+            <ion-label class="ion-text-wrap">Apply New</ion-label>
+          </ion-item>
+          <ion-item (click)="gotopage('/print')">
+            <ion-label class="ion-text-wrap">Print</ion-label>
+          </ion-item>
+        </div>
+        
+        <ion-item (click)="showitem(bicon2,2)">
+          <ion-icon #bicon2 slot="end" name="chevron-forward-outline"></ion-icon>
+          <ion-label  class="ion-text-wrap">Settings</ion-label>
+        </ion-item>
+        <div *ngIf="item.item2 == true">
+          <ion-item (click)="gotopage('/cpass')">
+            <ion-label class="ion-text-wrap">Change Password</ion-label>
+          </ion-item>
+          <ion-item (click)="gotopage('/uedit')">
+            <ion-label class="ion-text-wrap">Edit Profile</ion-label>
+          </ion-item>
+         
+        </div>
+        <ion-item (click)="logout()">
+          <ion-label class="ion-text-wrap">Log out</ion-label>
+        </ion-item>
+  </ion-list>
+</ion-content>

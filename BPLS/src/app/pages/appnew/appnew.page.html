@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"> 
+      <ion-button (click)="backtotab3()">
+        <ion-icon slot="icon-only" name="arrow-back-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="custom">Apply</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center content">
+  <form [formGroup]="bform">
+    <ion-list lines="full">
+      <ion-avatar class="avatar">
+        <img src="{{image}}" >
+      </ion-avatar>
+      <ion-button expand="block" color="primary" (click)="selectImage()"class="btncustom">TAKE PICTURE</ion-button>
+      <ion-item lines="none">
+        <ion-label>Purpose</ion-label> 
+      </ion-item>
+      <ion-item class="bgitem">
+        <ion-textarea placeholder="Enter information here..." formControlName="purpose"></ion-textarea>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.purpose">
+          <div class="error-message" *ngIf="bform.get('purpose').hasError(validation.type) && (bform.get('purpose').dirty || bform.get('purpose').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+    <!-- <ion-button expand="block" color="primary"  (click)="login(lform.value)" class="btncustom" [disabled]="!lform.valid">SIGN IN</ion-button> -->
+    <ion-button expand="block" color="primary"  (click)="save(bform.value)" class="btncustom"  [disabled]="!bform.valid">SUBMIT</ion-button>
+  </form>
+</ion-content>

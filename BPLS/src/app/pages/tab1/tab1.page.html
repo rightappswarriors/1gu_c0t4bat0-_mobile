@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="custom">Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <!-- <ion-badge color="danger" class="cartbadge" *ngIf="this.cartItemCount.value > 0">{{ cartItemCount | async }}</ion-badge> -->
+        <ion-icon slot="icon-only" name="notifications-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="cartpage()">
+        <ion-badge color="danger" class="cartbadge" *ngIf="this.cartItemCount.value > 0">{{ cartItemCount | async }}</ion-badge>
+        <ion-icon slot="icon-only" name="cart" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>  -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center content">
+  <img src="assets/cotabato.png" class="logo">
+  <div id="container">
+    <strong>Welcome!</strong>
+    <p>{{users.opr_name}}</p>
+  </div>
+</ion-content>

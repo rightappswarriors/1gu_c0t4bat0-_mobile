@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start"> 
+      <ion-button (click)="backtotab3()">
+        <ion-icon slot="icon-only" name="arrow-back-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="custom">Print</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+  <ngx-qrcode 
+      [ngStyle]="{'display': 'none'}"
+      [elementType]="elementType" 
+      [value] = "qrdata">
+  </ngx-qrcode>
+  
+  <ion-item lines="none ">
+     <ion-text>
+       Barangay Clearance List
+     </ion-text>
+  </ion-item>
+  <div class="container">
+      <table class="table-responsive table tablestyle tableheight">
+        <thead class="brdr">
+          <tr>
+            <th scope="col">Application Date</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody >
+          <!-- <tr *ngFor="let item of items" class="itm" (click)="clickupdate(item)">
+            <td>{{item.supl_name}}</td>
+            <td>{{item.purc_ord}}</td>
+            <td>{{item._reference}}</td>
+            <td>{{item.t_date}}</td>
+            <td>{{item.mp_desc}}</td>
+            <td>{{item.whs_desc}}</td>
+            <td>{{item.recipient}}</td>
+            <td>{{item.trnx_date}}</td>
+            <td>{{item.t_time}}</td>
+            <td>{{item.cancel}}</td>      
+          </tr> -->
+          <tr class="itm" *ngFor="let item of bitems">
+            <td>{{item.date_of_app}}</td>
+            <td>{{item.purpose}}</td>
+            <td>{{item.status}}</td>
+            <td><ion-icon name="print-outline" slot="icon-only" style="font-size: 30px;" (click)="print(item)"></ion-icon></td>
+            <td></td>
+          </tr>
+        </tbody>
+        
+    </table>
+  </div>
+</ion-content>

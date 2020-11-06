@@ -1,0 +1,52 @@
+<ion-app>
+  <ion-menu type="overlay" contentId="menu-content" menu-id="menu-content" side="start">
+    <!-- <ion-header>
+      <ion-toolbar color="light" padding-top>
+          <ion-title>Business Permit Licensing System</ion-title>
+      </ion-toolbar>
+    </ion-header> -->
+    <ion-content>
+      <ion-item lines="full" color="light">
+        <ion-avatar slot="start" style="
+        height:4rem;
+        width:4rem;">
+          <!--  -->
+          <img src="assets/cotabato.png">
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          <ion-text>
+            <h6>Business Permit Licensing System</h6>
+          </ion-text>
+          <!-- <ion-text>
+            <p>Email</p>
+          </ion-text> -->
+        </ion-label>
+      </ion-item>
+      <ion-list lines="full" >
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appMenu">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
+            <ion-label>{{p.title}}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-item (click)="showitem(bicon,1)">
+          <ion-icon #bicon slot="end" name="chevron-forward-outline"></ion-icon>
+          <ion-label class="ion-text-wrap">Account Settings</ion-label>
+        </ion-item>
+        <div *ngIf="item.item1 == true">
+          <ion-item (click)="gotopage('/editprofile')">
+            <ion-label class="ion-text-wrap">Edit Profile</ion-label>
+          </ion-item>
+          <ion-item (click)="gotopage('/cpass')">
+            <ion-label class="ion-text-wrap">Change Password</ion-label>
+          </ion-item>
+        </div>
+        <ion-item (click)="logout(bicon)">
+          <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
+          <ion-label>Log out</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="menu-content"></ion-router-outlet>
+</ion-app>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Options</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-item lines="none">
+  <ion-text>
+    <h6>Price: {{pitem.price |  currency:'₱ '}}</h6>
+  </ion-text>
+</ion-item>
+<ion-item lines="none">
+  <ion-text>
+    <h6>Stock: {{pitem.stock}}</h6>
+  </ion-text>
+</ion-item>
+<div *ngFor="let p of productoptions; index as po">
+  <ion-item lines="full">
+    <ion-text>{{p.type}}</ion-text>
+  </ion-item>  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let o of p.options; index as io">
+        <ion-item [color]="o.color" class="varitem" (click)="chooseoption(po,io,o)">
+          <ion-text>{{o.option}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>  
+<ion-item lines="null">
+  <ion-text slot="start">
+    <h4>Quantity</h4>
+  </ion-text>
+  <ion-badge slot="end" color="custom" (click)="add()"><ion-icon name="add-outline"></ion-icon></ion-badge>
+  <ion-text slot="end">{{pitem.qty}}</ion-text>
+  <ion-badge slot="end" color="custom" (click)="remove()"><ion-icon name="remove-outline"></ion-icon></ion-badge>
+</ion-item>
+<ion-button expand="full" color="custom" (click)="addtocart()">Add to Cart</ion-button>
+</ion-content>

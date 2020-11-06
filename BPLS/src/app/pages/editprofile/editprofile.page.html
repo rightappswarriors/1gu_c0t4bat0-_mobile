@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content" color="custom"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="custom">Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding ion-text-center">
+  <form [formGroup]="sform">
+    <ion-list lines="full">
+      <ion-item class="bgitem">
+        <ion-input type="text" placeholder="NAME OF BUSINESS" formControlName="businessname"></ion-input>     
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.businessname">
+          <div class="error-message" *ngIf="sform.get('businessname').hasError(validation.type) && (sform.get('businessname').dirty || sform.get('businessname').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item class="bgitem">
+        <ion-input type="text" placeholder="ADDRESS" formControlName="address"></ion-input>     
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.address">
+          <div class="error-message" *ngIf="sform.get('address').hasError(validation.type) && (sform.get('address').dirty || sform.get('address').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item class="bgitem">
+        <ion-input type="text" placeholder="AUTHORIZED SIGNATURE" formControlName="authorized"></ion-input>     
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.authorized">
+          <div class="error-message" *ngIf="sform.get('authorized').hasError(validation.type) && (sform.get('authorized').dirty || sform.get('authorized').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <!-- These validations are for the form group -->
+      <ion-item class="bgitem"> 
+        <ion-input type="email" placeholder="EMAIL" formControlName="email"></ion-input>     
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message" *ngIf="sform.get('email').hasError(validation.type) && (sform.get('email').dirty || sform.get('email').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item class="bgitem">
+        <ion-input type="text" placeholder="CONTACT PERSON" formControlName="contactperson"></ion-input>     
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.contactperson">
+          <div class="error-message" *ngIf="sform.get('contactperson').hasError(validation.type) && (sform.get('contactperson').dirty || sform.get('contactperson').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-button expand="block" color="success" class="btncustom" (click)="save(sform.value)" [disabled]="!sform.valid">SAVE</ion-button>
+  </form>
+  <!---
+  <ion-text>
+    <h6>Or Via</h6>
+  </ion-text>
+  <ion-button expand="block" color="custom" (click)="fbLogin()" class="btnpadding">
+    <ion-icon name="logo-facebook" slot="start"></ion-icon>FACEBOOK
+  </ion-button>
+  <ion-button expand="block" color="custom" (click)="gpLogin()" class="btnpadding">
+    <ion-icon name="logo-google" slot="start"></ion-icon>GOOGLE
+  </ion-button>
+  -->
+</ion-content>

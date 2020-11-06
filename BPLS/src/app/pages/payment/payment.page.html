@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content" color="custom"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="custom">Payment</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content">
+  <form [formGroup]="pform">
+    <ion-text>Mode of Payment</ion-text>
+    <ion-item class="bgitem">
+      <ion-label>Mode of Payment</ion-label>
+      <ion-select placeholder="SELECT" class="select-full-width" formControlName="mop">
+        <ion-select-option *ngFor="let p of mop" [value]="p">{{p}}</ion-select-option>
+      </ion-select>     
+    </ion-item>
+    <ion-item lines="full" style="margin-bottom: 8px;">
+      <ion-text color="custom">Walk IN</ion-text>
+    </ion-item>
+    <ion-text >Date</ion-text>
+    <ion-item class="bgitem">
+      <ion-datetime placeholder="Select Date" class="select-full-width" formControlName="date"></ion-datetime> 
+    </ion-item>
+    <ion-text>OR NO.</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER OR NO." formControlName="orno"></ion-input>  
+    </ion-item>
+    <ion-text>AMOUNT</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="number" placeholder="ENTER AMOUNT" formControlName="amount"></ion-input>  
+    </ion-item>
+    <ion-item lines="full" style="margin-bottom: 8px;">
+      <ion-text color="custom">BANK DEPOSIT</ion-text>
+    </ion-item>
+    <ion-text>BANK NAME</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER BANK NAME" formControlName="bdbname"></ion-input>  
+    </ion-item>
+    <ion-text>TRANSACTION NO.</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="number" placeholder="ENTER TRANSACTION NO." formControlName="bdtno"></ion-input>  
+    </ion-item>
+    <ion-text>AMOUNT</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER AMOUNT" formControlName="bdamount"></ion-input>  
+    </ion-item>
+    <ion-text>UPLOAD DEPOSIT SLIP</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input1 type="text" placeholder="SELECT FILE" formControlName="bddeposit" readonly="true"></ion-input>
+      <ion-icon name="cloud-upload-outline" slot="end" (click)="select('bddeposit',input1)"></ion-icon>     
+    </ion-item>
+    <ion-item lines="full" style="margin-bottom: 8px;">
+      <ion-text color="custom">ONLINE PAYMENT</ion-text>
+    </ion-item>
+    <ion-text>BANK NAME</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER BANK NAME" formControlName="opbname"></ion-input>  
+    </ion-item>
+    <ion-text>TRANSACTION NO.</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="number" placeholder="ENTER TRANSACTION NO." formControlName="optno"></ion-input>  
+    </ion-item>
+    <ion-text>AMOUNT</ion-text>
+    <ion-item class="bgitem">
+      <ion-input type="text" placeholder="ENTER AMOUNT" formControlName="opamount"></ion-input>  
+    </ion-item>
+    <ion-text>UPLOAD DEPOSIT SLIP</ion-text>
+      <ion-item class="bgitem">
+        <ion-input #input2 type="text" placeholder="SELECT FILE" formControlName="opdeposit" readonly="true"></ion-input>
+      <ion-icon name="cloud-upload-outline" slot="end" (click)="select('opdeposit',input2)"></ion-icon>     
+    </ion-item>
+    <ion-button expand="block" color="success" class="btncustom" (click)="save(pform.value)" [disabled]="!pform.valid">SAVE</ion-button>
+  </form>
+  <!-- <ion-card style="margin: 0;">
+    
+  </ion-card> -->
+</ion-content>

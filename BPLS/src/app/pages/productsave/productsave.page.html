@@ -1,0 +1,215 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"> 
+      <ion-button (click)="gotoproducts()">
+        <ion-icon slot="icon-only" name="arrow-back-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="custom">{{title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save(form.value)" [disabled]="!form.valid">
+        <ion-icon slot="icon-only" name="checkmark-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-card style="margin:10px 0;">
+      <ion-item lines="full">
+        <ion-text>Product Information</ion-text>
+      </ion-item>
+      <ion-list lines="full">
+        <ion-item class="bgitem">
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" maxlength="100" formControlName="name"></ion-input>     
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.name">
+            <div class="error-message" *ngIf="form.get('name').hasError(validation.type) && (form.get('name').dirty || form.get('name').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item class="bgitem">
+          <ion-label position="floating">Description</ion-label>
+          <ion-textarea maxlength="3000" formControlName="desc"></ion-textarea>     
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.desc">
+            <div class="error-message" *ngIf="form.get('desc').hasError(validation.type) && (form.get('desc').dirty || form.get('desc').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item class="bgitem">
+          <ion-label position="floating">Category</ion-label>
+          <ion-select formControlName="category" placeholder="Select Category" (ionChange)="onChangeCat1($event)">
+            <ion-select-option *ngFor="let c of categorylist" [value]="c.categoryid">{{c.categoryname}}</ion-select-option>
+          </ion-select>
+          <ion-select placeholder="Select Category" *ngIf="cat2 == true">
+            <ion-select-option *ngFor="let b of brandlist" [value]="b.brandid">{{b.brandname}}</ion-select-option>
+          </ion-select>
+          <ion-select placeholder="Select Category" *ngIf="cat3 == true">
+            <ion-select-option *ngFor="let b of brandlist" [value]="b.brandid">{{b.brandname}}</ion-select-option>
+          </ion-select>     
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.category">
+            <div class="error-message" *ngIf="form.get('category').hasError(validation.type) && (form.get('category').dirty || form.get('category').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item class="bgitem">
+          <ion-label position="floating">Brand</ion-label>
+          <ion-select formControlName="brand" placeholder="Select Brand">
+            <ion-select-option *ngFor="let b of brandlist" [value]="b.brandid">{{b.brandname}}</ion-select-option>
+          </ion-select>     
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.brand">
+            <div class="error-message" *ngIf="form.get('brand').hasError(validation.type) && (form.get('brand').dirty || form.get('brand').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </ion-list>  
+    </ion-card>
+  
+    <ion-card style="margin:10px 0;">
+      <ion-item lines="full">
+        <ion-text>Sales Information</ion-text>
+      </ion-item>
+      <div *ngIf="checkvariation == true">
+        <ion-item lines="full">
+          <ion-text>Variation</ion-text>
+          <ion-icon slot="end" name="close-outline" color="custom" (click)="closevar()"></ion-icon>
+        </ion-item>
+        <ion-item class="bgitem">
+          <ion-label position="floating">Variation Type</ion-label>
+          <ion-select multiple="true" placeholder="Select Type" formControlName="vartype"(ionChange)="onChangeVartype($event)">
+            <ion-select-option value="Color">Color</ion-select-option>
+            <ion-select-option value="Size">Size</ion-select-option>
+          </ion-select>     
+        </ion-item>
+        <div *ngFor="let v of variant; index as i">
+          <ion-item lines="full" class="bgitem">
+            <ion-text>Add Variation Options for {{v}}</ion-text>
+            <ion-icon slot="end" name="remove-outline" color="custom" (click)="removevaropt(i)"></ion-icon>
+            <ion-icon slot="end" name="add-outline" color="custom" (click)="addvaropt(i)"></ion-icon>
+          </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="4" *ngFor="let o of varopt[i]; index as oi">
+                <ion-item class="varitem">
+                  <ion-input type="text" placeholder="{{o.opt}}" value="{{o.optvalue}}" (ionInput)="varvalue($event,i,oi)"></ion-input>     
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <ion-item lines="full" class="bgitem" *ngIf="variant.length != 0">
+          <ion-text>Set Price and Stock</ion-text>
+          <ion-icon slot="end" name="add-outline" color="custom" (click)="setstockprice()"></ion-icon>
+        </ion-item>
+        <ion-grid>
+          <ion-row *ngIf="varstock.length != 0">
+            <ion-col size="4">
+              <ion-item lines="none">
+                <ion-text>Variation</ion-text>     
+              </ion-item>
+            </ion-col>
+            <ion-col size="5">
+              <ion-item lines="none">
+                <ion-text>Price</ion-text>     
+              </ion-item>
+            </ion-col>
+            <ion-col size="3">
+              <ion-item lines="none">
+                <ion-text>Stock</ion-text>     
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngFor="let v of varstock; index as var1">
+            <ion-col size="4">
+              <ion-item lines="none">
+                <ion-text>{{v.optvalue}}</ion-text>     
+              </ion-item>
+            </ion-col>
+            <ion-col size="5" lines="none">
+              <ion-item class="varitem" *ngIf="v.varstockopt2.length == 0">
+                <ion-input type="number" value="{{v.price}}" (ionInput)="varstockprice($event,var1,0,1,'price')"></ion-input>     
+              </ion-item>
+            </ion-col>
+            <ion-col size="3" lines="none">
+              <ion-item class="varitem" *ngIf="v.varstockopt2.length == 0">
+                <ion-input type="number" value="{{v.stock}}" (ionInput)="varstockprice($event,var1,0,1,'stock')"></ion-input>     
+              </ion-item>
+            </ion-col>
+            <ion-row *ngFor="let v1 of v.varstockopt2; index as var2">
+              <ion-col size="4">
+                <ion-item lines="none">
+                  <ion-text>{{v1.optvalue}}</ion-text>     
+                </ion-item>
+              </ion-col>
+              <ion-col size="5" lines="none">
+                <ion-item class="varitem">
+                  <ion-input type="number" value="{{v1.price}}" (ionInput)="varstockprice($event,var1,var2,2,'price')"></ion-input>     
+                </ion-item>
+              </ion-col>
+              <ion-col size="3" lines="none">
+                <ion-item class="varitem">
+                  <ion-input type="number" value="{{v1.stock}}" (ionInput)="varstockprice($event,var1,var2,2,'stock')"></ion-input>     
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <ion-list lines="full" *ngIf="checkvariation == false">
+        <ion-item class="bgitem">
+          <ion-label position="floating">Price</ion-label>
+          <ion-input type="number" formControlName="price"></ion-input>     
+        </ion-item>
+        <ion-item class="bgitem">
+          <ion-label position="floating">Stock</ion-label>
+          <ion-input type="number" formControlName="stock"></ion-input>     
+        </ion-item>
+      </ion-list>
+      <!-- <ion-button expand="full" color="custom" (click)="stockprice()">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+        Save Stock Price
+      </ion-button> -->
+      <ion-button expand="full" color="custom" *ngIf="checkvariation == false" (click)="addvariation()">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+        Add Variations
+      </ion-button>  
+    </ion-card> 
+  
+    <ion-card style="margin:10px 0;">
+      <ion-item lines="full">
+        <ion-text>Products Images</ion-text>
+      </ion-item>
+      <ion-button expand="full" color="custom" (click)="selectImages()">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+        Add Images
+      </ion-button>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let img of imagelist" size="3"> 
+            <ion-avatar style="
+                height:5rem;
+                width:5rem;
+                margin: 0;
+                padding: 0;
+                ">
+            <img style="border-radius: 0%;" src="{{img.imageres}}">
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>  
+    </ion-card>
+  </form>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="custom">Notifications</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="cartpage()">
+        <ion-badge color="danger" class="cartbadge" *ngIf="this.cartItemCount.value > 0">{{ cartItemCount | async }}</ion-badge>
+        <ion-icon slot="icon-only" name="cart" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-text class="ion-text-center" *ngIf="notifyitem == 0">
+      <h5>Notifications List is empty</h5>
+    </ion-text>
+    <ion-list lines="full">
+        <ion-item *ngFor="let n of notifyitem">
+          <ion-avatar slot="start">
+            <!-- <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"> -->
+            <img src="assets/samplelogo.png">
+          </ion-avatar>
+          <ion-label class="ion-text-wrap">
+            <ion-text>
+              <h3>{{n.title}}</h3>
+            </ion-text>
+            <p>{{n.message}}</p>
+          </ion-label>
+          <!-- <ion-badge slot="end" color="custom">11</ion-badge> -->
+        </ion-item>
+    </ion-list>
+</ion-content>

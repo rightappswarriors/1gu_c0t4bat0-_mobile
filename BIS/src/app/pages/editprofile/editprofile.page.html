@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="backtotabs()"> 
+      <ion-back-button color="custom">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title color="custom">Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        <ion-icon slot="icon-only" name="checkmark-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center content">
+  <ion-avatar class="avatar">
+    <img src="{{image}}" (click)="selectImage()">
+  </ion-avatar>
+  <ion-list lines="full">
+    <ion-item class="bgitem">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-input type="text" placeholder="NAME" [(ngModel)]="user.name"></ion-input>     
+    </ion-item>
+    <ion-item class="bgitem">
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-input type="email" placeholder="EMAIL" readonly [(ngModel)]="user.email"></ion-input>     
+    </ion-item>
+    <ion-item class="bgitem">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-select cancelText="Cancel" okText="OK" placeholder="GENDER" [(ngModel)]="user.gender">
+        <ion-select-option *ngFor="let gender of genders" [value]="gender">{{gender}}</ion-select-option>
+      </ion-select>     
+    </ion-item>
+    <ion-item class="bgitem">
+      <ion-icon name="cart-outline" slot="start"></ion-icon>
+      <ion-input type="text" placeholder="SHOP NAME" [(ngModel)]="user.shopname"></ion-input>     
+    </ion-item>
+    <ion-item class="bgitem">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-datetime display-format="MMM-DD-YYYY" placeholder="Date of Birth" [(ngModel)]="user.dob"></ion-datetime>     
+    </ion-item> 
+    <ion-item class="bgitem">
+      <ion-icon name="call-outline" slot="start"></ion-icon>
+      <ion-input type="number" placeholder="MOBILE NUMBER" [(ngModel)]="user.number"></ion-input>     
+    </ion-item>
+    <ion-item class="bgitem">
+      <ion-icon name="eye-outline" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="PASSWORD" [(ngModel)]="user.pass"></ion-input>     
+    </ion-item>
+  </ion-list>  
+</ion-content>

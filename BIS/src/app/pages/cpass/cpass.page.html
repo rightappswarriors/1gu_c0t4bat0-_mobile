@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"> 
+      <ion-button (click)="backtotab3()">
+        <ion-icon slot="icon-only" name="arrow-back-outline" color="custom"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="custom">Change Password</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+  <form [formGroup]="sform">
+    <ion-list lines="full">
+      <div formGroupName="matching_passwords">
+        <ion-item class="bgitem">
+          <ion-input #input type="password" placeholder="PASSWORD" formControlName="password"></ion-input>
+          <ion-icon #icon1 name="eye-outline" slot="end" (click)="showPassword(input,icon1)"></ion-icon>     
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message" *ngIf="sform.get('matching_passwords').get('password').hasError(validation.type) && (sform.get('matching_passwords').get('password').dirty || sform.get('matching_passwords').get('password').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item class="bgitem">
+          <ion-input #cinput type="password" placeholder="CONFIRM PASSWORD" formControlName="confirm_password"></ion-input>
+          <ion-icon #icon2 name="eye-outline" slot="end" (click)="showPassword(cinput,icon2)"></ion-icon>     
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.confirm_password">
+            <div class="error-message" *ngIf="sform.get('matching_passwords').get('confirm_password').hasError(validation.type) && (sform.get('matching_passwords').get('confirm_password').dirty || sform.get('matching_passwords').get('confirm_password').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!-- These validations are for the form group -->
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+          <div class="error-message" *ngIf="sform.get('matching_passwords').hasError(validation.type) && (sform.get('matching_passwords').get('confirm_password').dirty || sform.get('matching_passwords').get('confirm_password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-button expand="block" color="primary" class="btncustom" (click)="changepass(sform.value)" [disabled]="!sform.valid">SAVE</ion-button>
+  </form>
+</ion-content>
